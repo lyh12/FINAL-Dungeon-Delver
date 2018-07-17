@@ -9,6 +9,16 @@ using UnityEngine;
 		static public float ROOM_H = 11;
 		static public float WALL_T = 2;
 
+	static public int MAX_RM_X = 9;
+	static public int MAX_RM_Y = 9;
+
+	static public Vector2[] DOORS = new Vector2[] {
+		new Vector2(14, 5),
+		new Vector2(7.5f, 9),
+		new Vector2(1, 5),
+		new Vector2(7.5f, 1)
+	} ;
+
 
 	[Header("Set in Inspector")]
 
@@ -57,6 +67,21 @@ using UnityEngine;
 			transform.position = rm + rPos;
 		}
 	}
+
+	public Vector2 GetRoomPosOnGrid (float mult =-1){
+		if (mult == -1) {
+			mult = gridMult;
+		}
+		Vector2 rPos = roomPos;
+		rPos /= mult;
+		rPos.x = Mathf.Round( rPos.x );
+		rPos.y = Mathf.Round( rPos.y );
+		rPos *= mult;
+		return rPos;
+	}
+
+
+
 
 
 
