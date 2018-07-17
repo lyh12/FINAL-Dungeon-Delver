@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skeletos : Enemy {
+public class Skeletos : Enemy, IFacingMover {
 	[Header("Set in Inspector: Skeletos")]
 	public int speed = 2;
 	public float timeThinkMin = 1f;
@@ -25,7 +25,11 @@ public class Skeletos : Enemy {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	override protected void Update () {
+		base.Update ();
+		if (knockback)
+			return;
+
 		if (Time.time >= timeNextDecision) {
 			DecideDirection ();
 		}
